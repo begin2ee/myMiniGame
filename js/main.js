@@ -30,6 +30,7 @@ function run() {
     isPlaying = true;
     time = GAME_TIME; //게임시작할때 시간 항상 GAME_TIME으로 초기화
     wordInput.focus();
+    score = 0;
     scoreDisplay.innerText = 0;
     timeInterval = setInterval(countDown, 1000); //1초마다 countDown이 실행되도록
     checkInterval = setInterval(checkStatus, 50); //0.05초마다 게임상태를 체크하도록함
@@ -43,6 +44,7 @@ function checkStatus() {
         clearInterval(checkInterval);
     }
 }
+
 /*
 //단어 불러오기
 function getWords() {
@@ -83,7 +85,21 @@ function checkMatch() {
       wordInput.value.toLowerCase() === wordDisplay.innerText.toLowerCase()
     );
     //제시어와 입력단어가 같은지 비교//.tolowerCase()어떤 문자를 적던 양쪽을 소문자 처리해서 비교함*/
-    if (wordInput.value.toLowerCase() === wordDisplay.innerText.toLowerCase()) {
+    if (wordInput.value.length > 7 && (wordInput.value.toLowerCase() === wordDisplay.innerText.toLowerCase())) {
+        wordInput.value = '';
+        if (!isPlaying) {
+            return;
+        }
+        score = score + 2;
+        scoreDisplay.innerText = score;
+        time = GAME_TIME;
+        const randomIndex = Math.floor(Math.random() * words.length);
+        console.log(randomIndex);
+        wordDisplay.innerText = words[randomIndex];
+    }
+
+
+    else if (wordInput.value.toLowerCase() === wordDisplay.innerText.toLowerCase()) {
         wordInput.value = '';
         if (!isPlaying) {
             return;

@@ -21,6 +21,10 @@
     color: var(--facebook);
 }
 
+a {
+    text-decoration: none;
+}
+
 ul {
     margin-top: 1rem;
     list-style: none;

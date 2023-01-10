@@ -4,6 +4,10 @@
     padding: 0;
 }
 
+a {
+    text-decoration: none;
+}
+
 body {
     display: flex;
     /*flex 속성 강좌 들어보기

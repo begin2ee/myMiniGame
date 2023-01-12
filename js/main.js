@@ -45,27 +45,29 @@ function checkStatus() {
     }
 }
 
-/*
+
 //단어 불러오기
+/*
 function getWords() {
-  //단어를 랜덤하게 제공하는 api사용
-  axios
-    .get('https://random-word-api.herokuapp.com/word?number=100')
-    .then(function (response) {
-      response.data.forEach((word) => {
-        if (word.length < 10) {
-          words.push(word);
-        }
-      });
-      buttonChange('게임시작');
-    })
-    .catch(function (error) {
-      // handle error
-      console.log(error);
-    });
-  // words = ['Hello', 'Banana', 'Apple', 'Cherry'];
-  //buttonChange('게임시작');
-}*/
+    //단어를 랜덤하게 제공하는 api사용
+    axios
+        .get('https://random-word-api.herokuapp.com/word?number=100')
+        .then(function (response) {
+            response.data.forEach((word) => {
+                if (word.length < 10) {
+                    words.push(word);
+                }
+            });
+            buttonChange('게임시작');
+        })
+        .catch(function (error) {
+            // handle error
+            console.log(error);
+        });
+    //words = ['Hello', 'Banana', 'Apple', 'Cherry'];
+    //buttonChange('게임시작');
+} 
+*/
 
 async function getWords() {
     let response = await axios.get(
@@ -81,11 +83,8 @@ async function getWords() {
 
 //단어 일치 체크
 function checkMatch() {
-    /*console.log(
-      wordInput.value.toLowerCase() === wordDisplay.innerText.toLowerCase()
-    );
-    //제시어와 입력단어가 같은지 비교//.tolowerCase()어떤 문자를 적던 양쪽을 소문자 처리해서 비교함*/
-    if (wordInput.value.length > 7 && (wordInput.value.toLowerCase() === wordDisplay.innerText.toLowerCase())) {
+    //제시어와 입력단어가 같은지 비교! .tolowerCase()어떤 문자를 적던 양쪽을 소문자 처리해서 비교함
+    if (wordInput.value.length > 7 && (wordInput.value === wordDisplay.innerText)) {
         wordInput.value = '';
         if (!isPlaying) {
             return;
@@ -99,7 +98,7 @@ function checkMatch() {
     }
 
 
-    else if (wordInput.value.toLowerCase() === wordDisplay.innerText.toLowerCase()) {
+    else if (wordInput.value === wordDisplay.innerText) {
         wordInput.value = '';
         if (!isPlaying) {
             return;

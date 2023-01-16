@@ -6,6 +6,13 @@ let isPlaying = false; //게임 state를 나타내기위해
 let timeInterval;
 let checkInterval;
 let words = [];
+//*
+let roundCount = 1;
+const gametime2 = 6;
+let time2 = gametime2
+
+
+
 
 const wordInput = document.querySelector('.word-input');
 const wordDisplay = document.querySelector('.word-display');
@@ -44,7 +51,6 @@ function checkStatus() {
         clearInterval(checkInterval);
     }
 }
-
 
 //단어 불러오기
 /*
@@ -91,7 +97,14 @@ function checkMatch() {
         }
         score = score + 2;
         scoreDisplay.innerText = score;
-        time = GAME_TIME;
+
+        if (score >= 1) {
+            time = gametime2;
+        }
+        else
+            time = GAME_TIME;
+        //time = GAME_TIME;
+
         const randomIndex = Math.floor(Math.random() * words.length);
         console.log(randomIndex);
         wordDisplay.innerText = words[randomIndex];
@@ -105,7 +118,14 @@ function checkMatch() {
         }
         score++;
         scoreDisplay.innerText = score;
-        time = GAME_TIME;
+
+        if (score >= 1) {
+            time = gametime2;
+        }
+        else
+            time = GAME_TIME;
+        //time = GAME_TIME;
+
         const randomIndex = Math.floor(Math.random() * words.length);
         console.log(randomIndex);
         wordDisplay.innerText = words[randomIndex];

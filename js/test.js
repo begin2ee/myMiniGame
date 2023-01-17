@@ -11,7 +11,18 @@ if (wordInput.value.toLowerCase() === wordDisplay.innerText.toLowerCase()) {
     wordDisplay.innerText = words[randomIndex];
 }
 
-var flag = true
+var flag=0;
+
+if (score >= 2) {
+    flag++;
+    if(flag = true && flag == 1){
+        time -=5;
+        round ++;
+    }
+    gameRound.innerHTML = round;
+}
+
+
 
 wordInput.value // 사용자가 입력하는 값 
 wordDisplay.innerText // 출력되는 값

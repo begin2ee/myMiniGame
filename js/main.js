@@ -1,19 +1,17 @@
 //사용변수
 const GAME_TIME = 9;
-let score = 0; //점수는 0으로 초기화
+const GameTime2 = 6;
 let time = GAME_TIME;
+let time2 = GameTime2
+
+let score = 0; //점수는 0으로 초기화
 let isPlaying = false; //게임 state를 나타내기위해
 let timeInterval;
 let checkInterval;
 let words = [];
-//*
-let roundCount = 1;
-const gametime2 = 6;
-let time2 = gametime2
+let round = 1;
 
-
-
-
+const gameRound = document.querySelector('.round');
 const wordInput = document.querySelector('.word-input');
 const wordDisplay = document.querySelector('.word-display');
 const scoreDisplay = document.querySelector('.score');
@@ -38,6 +36,7 @@ function run() {
     time = GAME_TIME; //게임시작할때 시간 항상 GAME_TIME으로 초기화
     wordInput.focus();
     score = 0;
+    gameRound.innerHTML = 1; //이거를 넣을 시 Round 글자가 사라지게 됨, 그치만 이걸 넣어야됨.... 그래야 초기화가 됨
     scoreDisplay.innerText = 0;
     timeInterval = setInterval(countDown, 1000); //1초마다 countDown이 실행되도록
     checkInterval = setInterval(checkStatus, 50); //0.05초마다 게임상태를 체크하도록함
@@ -98,12 +97,14 @@ function checkMatch() {
         score = score + 2;
         scoreDisplay.innerText = score;
 
-        if (score >= 1) {
-            time = gametime2;
+        if (score >= 2) {
+            time = GameTime2;
+            round = 2;
+            gameRound.innerHTML = round;
         }
+
         else
             time = GAME_TIME;
-        //time = GAME_TIME;
 
         const randomIndex = Math.floor(Math.random() * words.length);
         console.log(randomIndex);
@@ -117,14 +118,15 @@ function checkMatch() {
             return;
         }
         score++;
-        scoreDisplay.innerText = score;
+        scoreDisplay.innerHTML = score;
 
-        if (score >= 1) {
-            time = gametime2;
+        if (score >= 2) {
+            time = GameTime2;
+            round = 2;
+            gameRound.innerHTML = round;
         }
         else
             time = GAME_TIME;
-        //time = GAME_TIME;
 
         const randomIndex = Math.floor(Math.random() * words.length);
         console.log(randomIndex);

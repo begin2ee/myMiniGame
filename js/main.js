@@ -1,15 +1,20 @@
 //사용변수
 const GAME_TIME = 9;
-const GameTime2 = 6;
-let time = GAME_TIME;
-let time2 = GameTime2
+const GAME_TIME2 = 7;
+const GAME_TIME3 = 5;
+const GAME_TIME4 = 3;
 
+let time = GAME_TIME;
 let score = 0; //점수는 0으로 초기화
 let isPlaying = false; //게임 state를 나타내기위해
 let timeInterval;
 let checkInterval;
 let words = [];
 let round = 1;
+
+var flag = 0;
+var flag2 = 0;
+var flag3 = 0;
 
 const gameRound = document.querySelector('.round');
 const wordInput = document.querySelector('.word-input');
@@ -32,12 +37,15 @@ function run() {
     if (isPlaying) {
         return;
     }
+    wordInput.value = '';
     isPlaying = true;
     time = GAME_TIME; //게임시작할때 시간 항상 GAME_TIME으로 초기화
     wordInput.focus();
     score = 0;
-    gameRound.innerHTML = 1; //이거를 넣을 시 Round 글자가 사라지게 됨, 그치만 이걸 넣어야됨.... 그래야 초기화가 됨
+    round = 1;
+    flag = 0; flag2 = 0; flag3 = 0;
     scoreDisplay.innerText = 0;
+    gameRound.innerHTML = 1;
     timeInterval = setInterval(countDown, 1000); //1초마다 countDown이 실행되도록
     checkInterval = setInterval(checkStatus, 50); //0.05초마다 게임상태를 체크하도록함
     buttonChange('게임중');
@@ -88,7 +96,8 @@ async function getWords() {
 
 //단어 일치 체크
 function checkMatch() {
-    //제시어와 입력단어가 같은지 비교! .tolowerCase()어떤 문자를 적던 양쪽을 소문자 처리해서 비교함
+
+    // 단어 수가 7글자 이상이고 서로 일치할 때
     if (wordInput.value.length > 7 && (wordInput.value === wordDisplay.innerText)) {
         wordInput.value = '';
         if (!isPlaying) {
@@ -97,14 +106,40 @@ function checkMatch() {
         score = score + 2;
         scoreDisplay.innerText = score;
 
+        time = GAME_TIME;
+
+        // 점수가 20점 이상일 시 Round2로 업그레이드
+        // time = 7초로 변환
         if (score >= 2) {
-            time = GameTime2;
-            round = 2;
+            flag++;
+            if (flag == 1) {
+                round++;
+            }
+            time = GAME_TIME2;
             gameRound.innerHTML = round;
         }
 
-        else
-            time = GAME_TIME;
+        // 점수가 40점 이상일 시 Round3로 업그레이드
+        // time = 5초로 변환
+        if (score >= 5) {
+            flag2++;
+            if (flag2 == 1) {
+                round++;
+            }
+            time = GAME_TIME3;
+            gameRound.innerHTML = round;
+        }
+
+        // 점수가 50점 이상일 시 Round4로 업그레이드
+        // time = 3초로 변환
+        if (score >= 7) {
+            flag3++;
+            if (flag3 == 1) {
+                round++;
+            }
+            time = GAME_TIME4;
+            gameRound.innerHTML = round;
+        }
 
         const randomIndex = Math.floor(Math.random() * words.length);
         console.log(randomIndex);
@@ -112,6 +147,7 @@ function checkMatch() {
     }
 
 
+    // 서로 일치할 때
     else if (wordInput.value === wordDisplay.innerText) {
         wordInput.value = '';
         if (!isPlaying) {
@@ -120,13 +156,40 @@ function checkMatch() {
         score++;
         scoreDisplay.innerHTML = score;
 
+        time = GAME_TIME;
+
+        // 점수가 20점 이상일 시 Round2로 업그레이드
+        // time = 7초로 변환
         if (score >= 2) {
-            time = GameTime2;
-            round = 2;
+            flag++;
+            if (flag == 1) {
+                round++;
+            }
+            time = GAME_TIME2;
             gameRound.innerHTML = round;
         }
-        else
-            time = GAME_TIME;
+
+        // 점수가 40점 이상일 시 Round3로 업그레이드
+        // time = 5초로 변환
+        if (score >= 5) {
+            flag2++;
+            if (flag2 == 1) {
+                round++;
+            }
+            time = GAME_TIME3;
+            gameRound.innerHTML = round;
+        }
+
+        // 점수가 50점 이상일 시 Round4로 업그레이드
+        // time = 3초로 변환
+        if (score >= 7) {
+            flag3++;
+            if (flag3 == 1) {
+                round++;
+            }
+            time = GAME_TIME4;
+            gameRound.innerHTML = round;
+        }
 
         const randomIndex = Math.floor(Math.random() * words.length);
         console.log(randomIndex);

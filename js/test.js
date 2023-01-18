@@ -45,6 +45,16 @@ if(score>=20){
 }
 
 
+function countDown() {
+    //삼항연산자
+    time > 0 ? time-- : (isPlaying = false);
+    if (!isPlaying && score==5) {
+        clearInterval(timeInterval); //종료시키는거
+    }
+    timeDisplay.innerText = time;
+}
+
+
 
 
 

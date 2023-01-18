@@ -200,9 +200,17 @@ function checkMatch() {
 function countDown() {
     //삼항연산자
     time > 0 ? time-- : (isPlaying = false);
+
+    // ?점 이상 획득 시 게임 클리어
+    if (score >= 1) {
+        time = 0;
+        wordDisplay.innerText = "CLEAR !!"
+    }
+
     if (!isPlaying) {
         clearInterval(timeInterval); //종료시키는거
     }
+
     timeDisplay.innerText = time;
 }
 

@@ -4,7 +4,7 @@
 const GAME_TIME = 9;  //1 Round
 const GAME_TIME2 = 7; //2 Round
 const GAME_TIME3 = 5; //3 Round
-const GAME_TIME4 = 3; //4 Round
+const GAME_TIME4 = 4; //4 Round
 
 let time = GAME_TIME;
 let score = 0; //점수는 0으로 초기화
@@ -41,7 +41,6 @@ function run() {
     if (isPlaying) {
         return;
     }
-
     wordInput.value = ''; //게임시작 시 입력 창 빈칸으로 초기화
     isPlaying = true;
     time = GAME_TIME; //게임시작 시 시간 항상 GAME_TIME으로 초기화
@@ -113,9 +112,9 @@ function checkMatch() {
 
         time = GAME_TIME;
 
-        // 점수가 15점 이상일 시 Round2로 업그레이드
+        // 점수가 20점 이상일 시 Round2로 업그레이드
         // time = 7초로 변환
-        if (score >= 15) {
+        if (score >= 20) {
             flag++;
             if (flag == 1) {
                 round++;
@@ -124,9 +123,9 @@ function checkMatch() {
             gameRound.innerHTML = round;
         }
 
-        // 점수가 25점 이상일 시 Round3로 업그레이드
+        // 점수가 30점 이상일 시 Round3로 업그레이드
         // time = 5초로 변환
-        if (score >= 25) {
+        if (score >= 30) {
             flag2++;
             if (flag2 == 1) {
                 round++;
@@ -135,9 +134,9 @@ function checkMatch() {
             gameRound.innerHTML = round;
         }
 
-        // 점수가 35점 이상일 시 Round4로 업그레이드
-        // time = 3초로 변환
-        if (score >= 35) {
+        // 점수가 40점 이상일 시 Round4로 업그레이드
+        // time = 4초로 변환
+        if (score >= 40) {
             flag3++;
             if (flag3 == 1) {
                 round++;
@@ -163,9 +162,9 @@ function checkMatch() {
 
         time = GAME_TIME;
 
-        // 점수가 15점 이상일 시 Round2로 업그레이드
+        // 점수가 20점 이상일 시 Round2로 업그레이드
         // time = 7초로 변환
-        if (score >= 15) {
+        if (score >= 20) {
             flag++;
             if (flag == 1) {
                 round++;
@@ -174,9 +173,9 @@ function checkMatch() {
             gameRound.innerHTML = round;
         }
 
-        // 점수가 25점 이상일 시 Round3로 업그레이드
+        // 점수가 30점 이상일 시 Round3로 업그레이드
         // time = 5초로 변환
-        if (score >= 25) {
+        if (score >= 30) {
             flag2++;
             if (flag2 == 1) {
                 round++;
@@ -185,9 +184,9 @@ function checkMatch() {
             gameRound.innerHTML = round;
         }
 
-        // 점수가 35점 이상일 시 Round4로 업그레이드
-        // time = 3초로 변환
-        if (score >= 35) {
+        // 점수가 40점 이상일 시 Round4로 업그레이드
+        // time = 4초로 변환
+        if (score >= 40) {
             flag3++;
             if (flag3 == 1) {
                 round++;
@@ -207,8 +206,8 @@ function countDown() {
     //삼항연산자
     time > 0 ? time-- : (isPlaying = false);
 
-    // 40점 이상 획득 시 게임 클리어
-    if (score >= 40) {
+    // 45점 이상 획득 시 게임 클리어
+    if (score >= 45) {
         time = 0;
         wordDisplay.innerText = "CLEAR !!"
     }

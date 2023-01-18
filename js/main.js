@@ -208,7 +208,7 @@ function countDown() {
     time > 0 ? time-- : (isPlaying = false);
 
     // 40점 이상 획득 시 게임 클리어
-    if (score >= 45) {
+    if (score >= 40) {
         time = 0;
         wordDisplay.innerText = "CLEAR !!"
     }

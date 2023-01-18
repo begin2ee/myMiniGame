@@ -1,2 +1,2 @@
 # myMiniGame
-Vanilla Javascript mini game 입니다.
+Vanilla Javascript mini game
